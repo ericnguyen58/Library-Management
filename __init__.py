@@ -1,2 +1,2 @@
-from .Book import *
-from .User import *
+from Book import *
+from User import *
