@@ -20,7 +20,7 @@ class Book:
             self.df_Book = pd.concat([self.df_Book, new_book])
         self.df_Book.to_csv(self.path, index=False)
     
-    # find book    
+    # find book using ID and title
     def search_book(self, book_ID: int, title: str):
         self.df_Book = pd.read_csv(self.path)
         return book_ID in self.df_Book.Book_ID.values and title in self.df_Book.Title.values
