@@ -1,12 +1,12 @@
 import pandas as pd
 class User:
-    def __init__(self, path = ".\member.csv" ):
+    def __init__(self, path = "./member.csv" ):
         self.path = path
         self.Borrow_book = []
         try:
             self.df_user = pd.read_csv(self.path)
         except:
-            self.df_user = pd.DataFrame(columns=["User_ID","Name","Email","Borrow_book"])
+            self.df_user = pd.DataFrame(columns=["User_ID","Name","Email"])
             self.df_user.to_csv(self.path, index=False)
             
     #add member
@@ -29,7 +29,7 @@ class User:
 
         # Concatenate and save
         self.df_user = pd.concat([self.df_user, new_user], ignore_index=True)
-        self.df_user = self.df_user.to_csv(self.path,index = False)
+        self.df_user.to_csv(self.path,index = False)
         
     #Return True if ID is in df_user, False otherwise   
     def search_user(self, ID):
@@ -54,3 +54,10 @@ class User:
         print(self.df_user)
     
 
+if __name__ == "__main__":
+    user = User()
+    user.add_member()
+    user.add_member()
+    user.print_df_user()
+    user.remove_user()
+    user.print_df_user()
