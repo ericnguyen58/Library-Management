@@ -31,7 +31,10 @@ class Book:
         self.df_Book = pd.read_csv(self.path)
         matching = ((book_ID in self.df_Book.Book_ID.values) and 
                     (title == self.df_Book.loc[self.df_Book["Book_ID"] == book_ID, "Title"].values[0]) )
-        return matching
+        if matching and self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Quantity"].values[0] > 0:
+            return True
+        return False
+            
         
     def print_df_user(self):
         self.df_user = pd.read_csv(self.path)
@@ -41,5 +44,5 @@ if __name__ == "__main__":
     book = Book()
     book.add_book("Blah Bla",6,10,3.6)
     
-    print(book.search_book(1,"Python Programming"))
+    print(book.search_book(4,"Python Programming"))
     book.print_df_user()

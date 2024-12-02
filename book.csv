@@ -1,7 +1,7 @@
 Book_ID,Title,Quantity,Price
-1,Python Programming,45,20.0
-2,Data Science 101,10,25.0
+1,Python Programming,29,20.0
+2,Data Science 101,0,25.0
 3,Machine Learning Basics,8,30.0
 4,Web Development with JavaScript,12,15.0
 5,Introduction to Algorithms,5,40.0
-6,Blah Bla,20,3.6
+6,Blah Bla,50,3.6
