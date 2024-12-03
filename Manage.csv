@@ -1,3 +1,2 @@
-Name,Book_ID,Transaction
-john doe,1,20.0
-jane smith,2,25.0
+Name,Borrow_book_ID,Transaction
+loi nguyen,6,3.6

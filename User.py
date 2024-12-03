@@ -21,21 +21,25 @@ class User:
         email = input("Enter your email: ")
         # Create a new user entry as a DataFrame
         new_user = pd.DataFrame([{
-            "User_ID": new_ID,
-            "Name": name,
-            "Email": email,
-            "Borrow_book": None
-        }])
+                                    "User_ID": new_ID,
+                                    "Name": name,
+                                    "Email": email
+                                }])
 
         # Concatenate and save
         self.df_user = pd.concat([self.df_user, new_user], ignore_index=True)
         self.df_user.to_csv(self.path,index = False)
         
-    #Return True if ID is in df_user, False otherwise   
-    def search_user(self, ID):
+        
+    #Return True if ID is in df_user, False otherwise     
+    def search_user(self, ID, name):
         self.df_user = pd.read_csv(self.path)
-        return ID in self.df_user.User_ID.values
-     
+        if name in self.df_user.loc[self.df_user["User_ID"] == ID,"Name"].values:
+            return True
+        
+        print( f"User {name} not found")
+        return False
+        
     def remove_user(self):
         while True:
             try:
@@ -56,8 +60,6 @@ class User:
 #hello
 if __name__ == "__main__":
     user = User()
-    user.add_member()
-    user.add_member()
-    user.print_df_user()
-    user.remove_user()
-    user.print_df_user()
+    # user.add_member()
+    print(user.search_user(1001,"ngoc hue"))
+# %%
