@@ -1,12 +1,12 @@
 import pandas as pd
 class User:
-    def __init__(self, path = "./member.csv" ):
+    def __init__(self, path = "member.csv" ):
         self.path = path
-        self.Borrow_book = []
+
         try:
             self.df_user = pd.read_csv(self.path)
         except:
-            self.df_user = pd.DataFrame(columns=["User_ID","Name","Email"])
+            self.df_user = pd.DataFrame(columns=["User_ID","Name","Email","Phone","Address"])
             self.df_user.to_csv(self.path, index=False)
             
     #add member
@@ -19,16 +19,21 @@ class User:
         
         name = input("Enter your name: ")
         email = input("Enter your email: ")
+        phone = input("Your phone number:")
+        address = input("Address:")
         # Create a new user entry as a DataFrame
         new_user = pd.DataFrame([{
                                     "User_ID": new_ID,
                                     "Name": name,
-                                    "Email": email
+                                    "Email": email,
+                                    "Phone": phone,
+                                    "Address": address
                                 }])
 
         # Concatenate and save
         self.df_user = pd.concat([self.df_user, new_user], ignore_index=True)
         self.df_user.to_csv(self.path,index = False)
+        print(f"User {name} adding successfully")
         
         
     #Return True if ID is in df_user, False otherwise     
@@ -61,5 +66,4 @@ class User:
 if __name__ == "__main__":
     user = User()
     # user.add_member()
-    print(user.search_user(1001,"ngoc hue"))
-# %%
+    user.add_member()

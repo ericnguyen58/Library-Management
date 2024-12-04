@@ -4,7 +4,7 @@ from Book import Book
 import pandas as pd
 import numpy as np
 class Library:
-    def __init__(self, path = "./Manage.csv"):
+    def __init__(self, path = "Manage.csv"):
         self.path = path
         self.user = User()
         self.book = Book()
@@ -28,17 +28,17 @@ class Library:
             new_bill = pd.DataFrame([{"Name": user_name,"Borrow_book_ID":book_id,"Transaction":transact}])
             self.df_manage = pd.concat([self.df_manage,new_bill],ignore_index= True)
         else:
-            temp = self.df_manage.loc[self.df_manage["Name"] == user_name,"Borrow_book_ID"].values[0]      
-            temp = np.append(temp, book_id)
+            # temp = self.df_manage.loc[self.df_manage["Name"] == user_name,"Borrow_book_ID"].values[0]      
+            # temp = np.append(temp, book_id)
 
-            list_temp = temp.tolist()
-            self.df_manage.loc[self.df_manage["Name"] == user_name,"Borrow_book_ID"] = [list_temp]
+            # list_temp = temp.tolist()
+            # self.df_manage.loc[self.df_manage["Name"] == user_name,"Borrow_book_ID"] = [list_temp]
             
             current_bill = self.df_manage.loc[self.df_manage["Name"] == user_name, "Transaction"].values[0]
             new_transaction = self.book.df_Book.loc[self.book.df_Book["Book_ID"] == book_id,"Price"].values[0]
             self.df_manage.loc[self.df_manage["Name"] == user_name,"Transaction"] = current_bill + new_transaction
             
-            self.df_manage = pd.concat([self.df_manage,new_bill],ignore_index= True)
+            
             
         self.book.df_Book.loc[self.book.df_Book["Book_ID"]== book_id ,"Quantity"] -= 1
         self.book.df_Book.to_csv(self.book.path, index= False)

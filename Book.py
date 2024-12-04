@@ -1,24 +1,39 @@
 import pandas as pd
 
 class Book:
-    def __init__(self,path = "./book.csv") -> None:
+    def __init__(self,path = "book.csv") -> None:
         self.path = path
         try:
             self.df_Book = pd.read_csv(self.path)
         except FileNotFoundError:
             # Create an empty DataFrame with the required columns
-            self.df_Book = pd.DataFrame(columns=["Book_ID","Title",  "Quantity", "Price"])
+            self.df_Book = pd.DataFrame(columns=["Book_ID","Title","Author" , "Genre", "Published Year","Availabe",  "Quantity", "Price"])
             self.df_Book.to_csv(self.path, index=False)
     
     # Add new book and update old book quantity
-    def add_book(self, title: str, book_ID: int, quantity: int, cost: float):
-        if self.search_book(book_ID,title):
-            self.df_Book.loc[self.df_Book["Book_ID"] == book_ID, "Quantity"] += quantity
-            self.df_Book.loc[self.df_Book["Book_ID"] == book_ID, "Price"] = cost
+    def add_book(self):
+        book_id = int(input("Enter the book's ID:\t"))
+        title = input("Enter the book's title:\t")
+        quantity =  int(input("Enter amount of books:\t"))
+        cost = float(input("Price:\t$"))
+        if self.search_book(book_id, title) :
+            
+            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Quantity"] += quantity
+            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Price"] = cost
+            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Available"] = True
             
         else:
-            new_book = pd.DataFrame([{"Book_ID": book_ID,
+            author = input("Enter author name:\t")
+            genre = input("Category:\t")
+            pYear = input("Published Year:\t")
+            is_avai = quantity > 0
+
+            new_book = pd.DataFrame([{"Book_ID": book_id,
                                       "Title": title, 
+                                      "Author" : author,
+                                      "Genre" : genre,
+                                      "Published Year" : pYear,
+                                      "Available" : is_avai,
                                       "Quantity":quantity, 
                                       "Price": cost
                                       }])
@@ -29,21 +44,15 @@ class Book:
     # find book using ID and title
     def search_book(self, book_ID: int, title):
         self.df_Book = pd.read_csv(self.path)
-        matching = ((book_ID in self.df_Book.Book_ID.values) and 
-                    (title == self.df_Book.loc[self.df_Book["Book_ID"] == book_ID, "Title"].values[0]) )
-        if matching and self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Quantity"].values[0] > 0:
+        if title not in self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Title"].values:
+            return False
+        if self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Quantity"].values[0] > 0:
             return True
         return False
             
-        
-    def print_df_user(self):
-        self.df_user = pd.read_csv(self.path)
-        print(self.df_user)    
+           
         
 if __name__ == "__main__":
     book = Book()
-    book.add_book("Blah Bla",6,10,3.6)
+    book.add_book()
     
-    #hello
-    print(book.search_book(6,"Blah Bla"))
-    book.print_df_user()

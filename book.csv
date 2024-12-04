@@ -1,2 +1,12 @@
-Book_ID,Title,Quantity,Price
-6,Blah Bla,120,3.6
+Book_ID,Title,Author,Genre,Published Year,Available,Quantity,Price
+100,To Kill a Mockingbird,Harper Lee,Fiction,1960,True,10,15.99
+101,1984,George Orwell,Dystopian,1949,True,7,12.49
+102,The Great Gatsby,F. Scott Fitzgerald,Classic,1925,True,5,10.99
+103,The Catcher in the Rye,J.D. Salinger,Young Adult,1951,True,8,9.99
+104,Moby Dick,Herman Melville,Adventure,1851,True,4,14.5
+106,The Hobbit,J.R.R. Tolkien,Fantasy,1937,True,12,18.25
+107,Pride and Prejudice,Jane Austen,Romance,1813,True,6,8.99
+108,The Lord of the Rings,J.R.R. Tolkien,Fantasy,1954,True,3,22.5
+109,Harry Potter and the Sorcerer's Stone,J.K. Rowling,Fantasy,1997,True,15,20.99
+110,The Hunger Games,Suzanne Collins,Dystopian,2008,True,10,13.99
+1,1,1,1,1,True,1,1.0

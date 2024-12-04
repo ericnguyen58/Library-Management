@@ -1,6 +1,3 @@
-User_ID,Name,Email
-1000,eric toan,ntoan@charlotte.edu
-1001,ngoc hue,ngochue@gmail.com
-1002,le nhat trinh,trinhi11@gmail.com
-1003,loi nguyen,lng68@gmail.com
+User_ID,Name,Email,Phone,Address
+1000,Eric Toan,ntoan@charlotte.edu,7042990607,3612 Abbey Hill Ln
 
