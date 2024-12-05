@@ -12,21 +12,20 @@ class Book:
     
     # Add new book and update old book quantity
     def add_book(self):
-        book_id = int(input("Enter the book's ID:\t"))
         title = input("Enter the book's title:\t")
+        genre = input("Category:\t")
+        author = input("Enter author name:\t")
+        pYear = input("Published Year:\t")
+        book_id = int(input("Enter the book's ID:\t"))
         quantity =  int(input("Enter amount of books:\t"))
         cost = float(input("Price:\t$"))
-        if self.search_book(book_id, title) :
+        is_avai = quantity > 0
+        if self.search_book(genre, title) :
             
-            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Quantity"] += quantity
-            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Price"] = cost
-            self.df_Book.loc[self.df_Book["Book_ID"] == book_id, "Available"] = True
+            self.df_Book.loc[self.df_Book["Genre"] == genre, "Quantity"] += quantity
+            self.df_Book.loc[self.df_Book["Genre"] == genre, "Price"] = cost
             
         else:
-            author = input("Enter author name:\t")
-            genre = input("Category:\t")
-            pYear = input("Published Year:\t")
-            is_avai = quantity > 0
 
             new_book = pd.DataFrame([{"Book_ID": book_id,
                                       "Title": title, 
@@ -42,13 +41,19 @@ class Book:
         self.df_Book.to_csv(self.path, index=False)
     
     # find book using ID and title
-    def search_book(self, book_ID: int, title):
+    def search_book(self, genre: str, title: str):
         self.df_Book = pd.read_csv(self.path)
-        if title not in self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Title"].values:
-            return False
-        if self.df_Book.loc[self.df_Book["Book_ID"] == book_ID,"Quantity"].values[0] > 0:
+        matches = self.df_Book[(self.df_Book["Genre"] == genre) and (self.df_Book["Title"] == title)]
+        if not matches.empty:
+            self.print_book_matching(matches)
             return True
+        print("No matching books found.")
         return False
+    
+    def print_book_matching(self, matches):
+        print("Matching books:")
+        print(matches[["Title", "Genre", "Quantity", "Price"]])
+                    
             
            
         

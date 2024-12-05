@@ -15,7 +15,11 @@ class Library:
             self.df_manage = pd.DataFrame(columns=["Name","Borrow_book_ID", "Transaction"])
             self.df_manage.to_csv(self.path, index=False)
     
-    def borrowed_book(self,book_id,title,user_name):
+    def borrowed_book(self):
+        customer = input("Enter your name:\t")
+        title = input("Enter the book you want to borrow: \t")
+        
+        if title in self.book.search_book()
         self.df_manage = pd.read_csv(self.path)
         self.book.df_Book = pd.read_csv(self.book.path)  
         self.user.df_user = pd.read_csv(self.user.path)  
