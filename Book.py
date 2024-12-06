@@ -14,19 +14,20 @@ class Book:
     def add_book(self):
         title = input("Enter the book's title:\t")
         genre = input("Category:\t")
-        author = input("Enter author name:\t")
-        pYear = input("Published Year:\t")
-        book_id = int(input("Enter the book's ID:\t"))
-        quantity =  int(input("Enter amount of books:\t"))
-        cost = float(input("Price:\t$"))
-        is_avai = quantity > 0
+        
         if self.search_book(genre, title) :
-            
+            quantity =  int(input("Enter amount of books:\t"))
+            cost = float(input("Price:\t$"))
             self.df_Book.loc[self.df_Book["Genre"] == genre, "Quantity"] += quantity
             self.df_Book.loc[self.df_Book["Genre"] == genre, "Price"] = cost
             
         else:
-
+            author = input("Enter author name:\t")
+            pYear = input("Published Year:\t")
+            book_id = int(input("Enter the book's ID:\t"))
+            quantity =  int(input("Enter amount of books:\t"))
+            cost = float(input("Price:\t$"))
+            is_avai = quantity > 0
             new_book = pd.DataFrame([{"Book_ID": book_id,
                                       "Title": title, 
                                       "Author" : author,
@@ -43,7 +44,7 @@ class Book:
     # find book using ID and title
     def search_book(self, genre: str, title: str):
         self.df_Book = pd.read_csv(self.path)
-        matches = self.df_Book[(self.df_Book["Genre"] == genre) and (self.df_Book["Title"] == title)]
+        matches = self.df_Book[(self.df_Book["Genre"] == genre) & (self.df_Book["Title"] == title)]
         if not matches.empty:
             self.print_book_matching(matches)
             return True
@@ -53,10 +54,7 @@ class Book:
     def print_book_matching(self, matches):
         print("Matching books:")
         print(matches[["Title", "Genre", "Quantity", "Price"]])
-                    
-            
-           
-        
+
 if __name__ == "__main__":
     book = Book()
     book.add_book()
