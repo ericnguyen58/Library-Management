@@ -4,7 +4,7 @@ from Book import Book
 import pandas as pd
 import numpy as np
 class Library:
-    def __init__(self, path = "Manage.csv"):
+    def __init__(self, path = "./data_savor/Manage.csv"):
         self.path = path
         self.user = User()
         self.book = Book()
