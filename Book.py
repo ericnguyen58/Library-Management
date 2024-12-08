@@ -43,7 +43,7 @@ class Book:
     # find book using ID and title
     def search_book(self, genre: str, title: str):
         self.df_Book = pd.read_csv(self.path)
-        matches = self.df_Book[(self.df_Book["Genre"] == genre) and (self.df_Book["Title"] == title)]
+        matches = self.df_Book[(self.df_Book["Genre"] == genre) & (self.df_Book["Title"] == title)]
         if not matches.empty:
             self.print_book_matching(matches)
             return True

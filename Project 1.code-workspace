@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "DSA",
+			"path": "../DSA"
+		},
+		{
+			"name": "LM_58",
+			"path": "."
+		},
+		{
+			"name": "Library-Management",
+			"path": "../Library-Management"
+		}
+	],
+	"settings": {}
+}
