@@ -1,2 +1,4 @@
-User_ID,Name,Borrow_book_ID,Title,Transaction,State
-
+Transaction_ID,User_ID,User Name,Book_ID,Title,State,Price
+1,1000,Eric Toan,106.0,The Hobbit,Returned,0.0
+2,1000,Eric Toan,106.0,The Hobbit,Returned,0.0
+3,1000,Eric Toan,106.0,The Hobbit,Borrowed,18.25
