@@ -46,12 +46,16 @@ class Library:
         user_name = input("Enter your name:\t")
         user_id = int(input("Enter your ID:\t"))
         if self.search(user_name,user_id):
-            transact = int(input("Enter transact ID you want to process: \t"))
-            if transact in self.df_manage.loc[self.df_manage["Transaction_ID"] == transact].values:
-                self.df_manage.loc[self.df_manage["Transaction_ID"] == transact,
+            transact_ID = int(input("Enter transact ID you want to process: \t"))
+            transact = self.df_manage[(self.df_manage["Transaction_ID"] == transact_ID) 
+                                              & (self.df_manage["State"] == "Borrowed")]
+            if not transact.empty:
+                self.df_manage.loc[self.df_manage["Transaction_ID"] == transact_ID,
                                    ["State","Price"]] = ["Returned",0.0]
                 print("Returned successfully")
                 self.df_manage.to_csv(self.path,index=False)
+            else:
+                print("Transaction not found or book returned already")
         
         
 
@@ -67,4 +71,5 @@ class Library:
         # if not matching.empty:
 if __name__ == "__main__":
     library = Library()
+    # library.borrowed_book("Fiction","To Kill a Mockingbird","Eric Toan",1000)
     library.return_book()
