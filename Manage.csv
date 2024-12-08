@@ -1,2 +1,9 @@
-User_ID,Name,Borrow_book_ID,Title,Transaction,State
-
+Transaction_ID,User_ID,User Name,Book_ID,Title,State,Price
+1,1000,Eric Toan,106.0,The Hobbit,Returned,0.0
+2,1000,Eric Toan,106.0,The Hobbit,Returned,0.0
+3,1000,Eric Toan,106.0,The Hobbit,Returned,0.0
+4,1000,Eric Toan,100.0,To Kill a Mockingbird,Borrowed,15.99
+5,1000,Eric Toan,100.0,To Kill a Mockingbird,Borrowed,15.99
+6,1000,Eric Toan,100.0,To Kill a Mockingbird,Returned,0.0
+7,1000,Eric Toan,100.0,To Kill a Mockingbird,Borrowed,15.99
+8,1000,Eric Toan,100.0,To Kill a Mockingbird,Borrowed,15.99
