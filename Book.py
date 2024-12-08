@@ -1,7 +1,7 @@
 import pandas as pd
 
 class Book:
-    def __init__(self,path = "book.csv") -> None:
+    def __init__(self,path = "./data_savor/book.csv") -> None:
         self.path = path
         try:
             self.df_Book = pd.read_csv(self.path)

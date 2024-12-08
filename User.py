@@ -1,6 +1,6 @@
 import pandas as pd
 class User:
-    def __init__(self, path = "member.csv" ):
+    def __init__(self, path = "./data_savor/member.csv" ):
         self.path = path
 
         try:
